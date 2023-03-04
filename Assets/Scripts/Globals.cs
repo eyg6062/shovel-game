@@ -5,7 +5,7 @@ using UnityEngine;
 public class Globals
 {
     // todo: change slightly
-    static public Dictionary<Vector2, T> GetChildDict<T>(string groupName, GameObject gameObj)
+    static public Dictionary<Vector2, T> GetChildren<T>(string groupName, GameObject gameObj)
     {
         Dictionary<Vector2, T> tiles = new Dictionary<Vector2, T>();
 
