@@ -20,12 +20,12 @@ public class Unit : TileObject
         falls = true;
     }
 
-    public int getActPts()
+    public int GetActPts()
     {
         return actPoints;
     }
 
-    public void spendActPts(int amt)
+    public void SpendActPts(int amt)
     {
         actPoints -= amt;
         if (actPoints < 0)

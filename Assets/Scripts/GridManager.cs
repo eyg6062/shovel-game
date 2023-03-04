@@ -51,6 +51,11 @@ public class GridManager : MonoBehaviour
     {
         int x = (int)dest.x;
         int y = (int)dest.y;
+        if (x < 0 || y < 0)
+        {
+            return true;
+        }
+
         if (objectArray[x][y] != null)
         {
             return true;
@@ -158,6 +163,11 @@ public class GridManager : MonoBehaviour
             return;
         }
 
+        if (!obj.IsAttackable())
+        {
+            return;
+        }
+
         if (TryUnitAct(unit, cost))
         {
             obj.AdjustHP(cost);
@@ -193,7 +203,7 @@ public class GridManager : MonoBehaviour
     // return true if unit has enough points to do action, spends the points
     private bool TryUnitAct(Unit unit, int cost)
     {
-        if (unit.getActPts() - cost < 0)
+        if (unit.GetActPts() - cost < 0)
         {
             //
             Debug.Log("not enough points");
@@ -201,14 +211,10 @@ public class GridManager : MonoBehaviour
         }
         else
         {
-            unit.spendActPts(cost);
+            unit.SpendActPts(cost);
             return true;
         }
         
     }
 
-    private void CrushUnit(Unit unit)
-    {
-        DestroyObjAndFall(unit);
-    }
 }

@@ -7,6 +7,7 @@ public class TileObject : MonoBehaviour
     [SerializeField] protected string objName;
     [SerializeField] protected int totalHP;
     [SerializeField] protected bool falls;
+    [SerializeField] protected bool attackable;
 
     private int HP;
 
@@ -49,6 +50,11 @@ public class TileObject : MonoBehaviour
         {
             HP = 0;
         }
+    }
+
+    public bool IsAttackable()
+    {
+        return attackable;
     }
 
     public bool IsDead()

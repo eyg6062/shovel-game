@@ -98,3 +98,4 @@ MonoBehaviour:
   objName: falling tile
   totalHP: 2
   falls: 1
+  attackable: 1

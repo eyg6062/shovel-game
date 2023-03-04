@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TileInteract : Tile
 {
-    private Controller controller;
+    private UnitController unitController;
 
     private void Start()
     {
@@ -14,13 +14,13 @@ public class TileInteract : Tile
     override public void Initialize()
     {
         base.Initialize();
-        GameObject gameManager = GameObject.FindWithTag("GameManager");
-        controller = gameManager.GetComponent<Controller>();
+        GameObject unitControllerObj = GameObject.FindWithTag("UnitController");
+        unitController = unitControllerObj.GetComponent<UnitController>();
 
     }
 
     private void OnMouseDown()
     {
-        controller.ClickedAtkTile(GetPos());
+        unitController.ClickedAtkTile(GetPos());
     }
 }

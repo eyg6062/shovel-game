@@ -97,3 +97,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objName: solid tile
   totalHP: 2
+  falls: 0
+  attackable: 1

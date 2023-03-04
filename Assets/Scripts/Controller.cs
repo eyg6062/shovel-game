@@ -4,42 +4,40 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
-    private GridManager gridManager;
     private Unit activeUnit;
 
-    [SerializeField]private GameObject interactTilesPf;
+    [SerializeField] protected GameObject unitControllerPf;
+    private GameObject unitController;
+
+    [SerializeField] private GameObject interactTilesPf;
     private GameObject interactTiles;
-
-    private void Start()
-    {
-        gridManager = GetComponent<GridManager>();
-        // sets active unit to that one existing unit, get rid of later
-        activeUnit = GameObject.FindWithTag("Unit").GetComponent<Unit>();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            gridManager.UnitWalk(activeUnit, Vector2.left);
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            gridManager.UnitWalk(activeUnit, Vector2.right);
-        }
-    }
-
-    public void ClickedAtkTile(Vector2 pos)
-    {
-        gridManager.AttackObj(activeUnit, pos);
-    }
 
     public void ClickedUnit(Unit unit)
     {
-        activeUnit = unit;
-        interactTiles = Instantiate(interactTilesPf, unit.GetPos(), Quaternion.identity);
-        interactTiles.transform.parent = unit.gameObject.transform;
-       
+        // deactivate unit if clicked on same unit
+        if (ReferenceEquals(activeUnit, unit))
+        {
+            activeUnit = null;
+
+            Destroy(unitController);
+            Destroy(interactTiles); 
+        } 
+        // activate unit if no other are active
+        else if (activeUnit == null)
+        {
+            activeUnit = unit;
+
+            unitController = Instantiate(unitControllerPf);
+            UnitController controllerScript = unitController.GetComponent<UnitController>();
+            controllerScript.SetUnit(activeUnit);
+
+            interactTiles = Instantiate(interactTilesPf, activeUnit.GetPos(), Quaternion.identity);
+
+            // sticks objects onto unit
+            interactTiles.transform.parent = activeUnit.gameObject.transform;
+            unitController.transform.parent = activeUnit.gameObject.transform;
+        }
+        
     }
+
 }
