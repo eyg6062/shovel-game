@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject mapPf;
+    [SerializeField] protected GameObject mapPf;
 
     void Awake()
     {

@@ -95,5 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae33eb7188a71994382670acfada18dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objName: 
-  totalHP: 0
+  objName: falling tile
+  totalHP: 2
+  falls: 1

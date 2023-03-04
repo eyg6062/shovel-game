@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileInteract : Tile
+public class UnitInteract : Tile
 {
+    private Unit unit;
+
     private Controller controller;
 
     private void Start()
@@ -17,10 +19,12 @@ public class TileInteract : Tile
         GameObject gameManager = GameObject.FindWithTag("GameManager");
         controller = gameManager.GetComponent<Controller>();
 
+        unit = gameObject.GetComponent<Unit>();
+
     }
 
     private void OnMouseDown()
     {
-        controller.ClickedAtkTile(GetPos());
+        controller.ClickedUnit(unit);
     }
 }

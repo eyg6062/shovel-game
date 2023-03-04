@@ -2,8 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockTile : Tile
+public class BlockTile : TileObject
 {
-    // Start is called before the first frame update
-    
+    private void Start()
+    {
+        Initialize();
+    }
+
+    override public void Initialize()
+    {
+        base.Initialize();
+    }
+
 }

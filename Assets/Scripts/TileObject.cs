@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class TileObject : MonoBehaviour
 {
-    [SerializeField]protected string objName;
+    [SerializeField] protected string objName;
     [SerializeField] protected int totalHP;
+    [SerializeField] protected bool falls;
 
     private int HP;
 
     protected Vector2 pos;
-    protected bool falls;
 
     private void Start()
     {
@@ -32,8 +32,27 @@ public class TileObject : MonoBehaviour
         return falls;
     }
 
-    public void SetPos()
+    public void UpdatePos(Vector2 dest)
     {
+        transform.position = dest;
+    }
 
+    public int GetHP()
+    {
+        return HP;
+    }
+
+    public void AdjustHP(int amt)
+    {
+        HP = HP - amt;
+        if (HP < 0)
+        {
+            HP = 0;
+        }
+    }
+
+    public bool IsDead()
+    {
+        return (HP <= 0);
     }
 }

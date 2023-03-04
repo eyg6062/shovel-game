@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Unit : TileObject
 {
-    [SerializeField]private int totalActPoints;
+    [SerializeField]protected int totalActPoints;
 
     private int actPoints;
 
@@ -17,6 +17,21 @@ public class Unit : TileObject
     {
         base.Initialize();
         actPoints = totalActPoints;
+        falls = true;
+    }
+
+    public int getActPts()
+    {
+        return actPoints;
+    }
+
+    public void spendActPts(int amt)
+    {
+        actPoints -= amt;
+        if (actPoints < 0)
+        {
+            actPoints = 0;
+        }
     }
 
 }
