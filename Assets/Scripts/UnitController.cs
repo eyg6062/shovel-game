@@ -27,12 +27,12 @@ public class UnitController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            gridManager.UnitWalk(unit, Vector2.left);
+            gridManager.UnitClimb(unit, Vector2.left);
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            gridManager.UnitWalk(unit, Vector2.right);
+            gridManager.UnitClimb(unit, Vector2.right);
         }
     }
 

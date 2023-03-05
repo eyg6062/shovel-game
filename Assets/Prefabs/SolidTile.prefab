@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8181257624248881304}
   - component: {fileID: 4074262362763101170}
-  - component: {fileID: 7699969374624505802}
+  - component: {fileID: 8303274961691016673}
   m_Layer: 0
   m_Name: SolidTile
   m_TagString: TileObject
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7699969374624505802
+--- !u!114 &8303274961691016673
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7600811151805734278}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae33eb7188a71994382670acfada18dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 98b588c5aca421241a54f3dc893cdb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objName: solid tile
