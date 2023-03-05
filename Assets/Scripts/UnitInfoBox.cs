@@ -19,7 +19,6 @@ public class UnitInfoBox : MonoBehaviour
 
     public void DisplayInfo(Unit unit)
     {
-        Debug.Log(unit.GetPos());
         hp.text = "HP: " + unit.GetHP();
         ap.text = "AP: " + unit.GetAP();
 

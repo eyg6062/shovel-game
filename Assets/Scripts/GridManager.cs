@@ -10,6 +10,8 @@ public class GridManager : MonoBehaviour
     private GameObject map;
     private List<List<TileObject>> objectArray;
 
+    private UIManager uiManager;
+
     private void Start()
     {
         Initialize();
@@ -44,6 +46,9 @@ public class GridManager : MonoBehaviour
                 objectArray[x][y] = child.GetComponent<TileObject>();
             }
         }
+
+        // get UIManager
+        uiManager = gameObject.GetComponent<UIManager>();
     }
 
 
@@ -252,11 +257,14 @@ public class GridManager : MonoBehaviour
         int cost = 1;
 
         SetCarriedUnits(unit);
+
+        /*
         if (unit.IsCarrying())
         {
-            Debug.Log("iscarrying");
+            Debug.Log("can't attack while carrying");
             return;
         }
+        */
 
         TileObject obj = GetObj(dest);
         if (obj == null)
@@ -310,7 +318,8 @@ public class GridManager : MonoBehaviour
         if (unit.GetAP() - cost < 0)
         {
             //
-            Debug.Log("not enough points");
+            Debug.Log("Not enough AP (" + cost + " needed)");
+            uiManager.DisplayError("Not enough AP (" + cost + " needed)");
             return false;
         }
         else
