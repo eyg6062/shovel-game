@@ -9,8 +9,16 @@ public class UIManager : MonoBehaviour
     private GameObject canvasObject;
 
     private GameObject errorTextObj;
-
     private UnitInfoBox unitInfoBox;
+
+    private GameObject redButton;
+    private GameObject blueButton;
+
+    [SerializeField] private GameObject winCanvasPf;
+    private GameObject winCanvasObj;
+
+    [SerializeField] private GameObject tutorialCanvasPf;
+    private GameObject tutorialCanvasObj;
 
     private void Start()
     {
@@ -30,6 +38,22 @@ public class UIManager : MonoBehaviour
         errorTextObj = canvasObject.transform.Find("ErrorText").gameObject;
 
         errorTextObj.SetActive(false);
+
+        redButton = canvasObject.transform.Find("EndRedTurnButton").gameObject;
+        blueButton = canvasObject.transform.Find("EndBlueTurnButton").gameObject;
+        redButton.SetActive(false);
+    }
+
+    public void ShowBlueButton()
+    {
+        redButton.SetActive(false);
+        blueButton.SetActive(true);
+    }
+
+    public void ShowRedButton()
+    {
+        blueButton.SetActive(false);
+        redButton.SetActive(true);
     }
 
     public void DisplayUnitInfo(Unit unit)
@@ -56,6 +80,51 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         errorTextObj.SetActive(false);
+    }
+
+    public void DisplayWinCanvas(string factionStr)
+    {
+        if (winCanvasObj == null)
+        {
+            winCanvasObj = Instantiate(winCanvasPf);
+        }
+
+        GameObject redWinsObj = winCanvasObj.transform.Find("RedWins").gameObject;
+        GameObject blueWinsObj = winCanvasObj.transform.Find("BlueWins").gameObject;
+        GameObject tieObj = winCanvasObj.transform.Find("Tie").gameObject;
+
+        if (factionStr == "blue")
+        {
+            redWinsObj.SetActive(false);
+            tieObj.SetActive(false);
+            blueWinsObj.SetActive(true);
+        }
+        else if (factionStr == "red")
+        {
+            blueWinsObj.SetActive(false);
+            tieObj.SetActive(false);
+            redWinsObj.SetActive(true);
+        }
+        else if (factionStr == "tie")
+        {
+            blueWinsObj.SetActive(false);
+            redWinsObj.SetActive(false);
+            tieObj.SetActive(true);
+        }
+
+    }
+
+    public void ToggleTutorialCanvas()
+    {
+        if (tutorialCanvasObj == null)
+        {
+            tutorialCanvasObj = Instantiate(tutorialCanvasPf);
+        } 
+        else
+        {
+            Destroy(tutorialCanvasObj);
+            tutorialCanvasObj = null;
+        }
     }
 
 }

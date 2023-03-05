@@ -293,6 +293,12 @@ public class GridManager : MonoBehaviour
             obj.AdjustHP(cost);
         }
 
+        if (obj.GetType() == typeof(BlockTile))
+        {
+            BlockTile blockTile = (BlockTile)obj;
+            blockTile.CheckHP();
+        }
+
         CheckDead(obj);
     }
 
@@ -358,16 +364,19 @@ public class GridManager : MonoBehaviour
         if (blueCount > 0 && redCount == 0)
         {
             // blue wins
+            uiManager.DisplayWinCanvas("blue");
             Debug.Log("blue wins");
         } 
         else if (redCount > 0 && blueCount == 0)
         {
             // red wins
+            uiManager.DisplayWinCanvas("red");
             Debug.Log("red wins");
         } 
         else if (blueCount == 0 && redCount == 0)
         {
             // tie
+            uiManager.DisplayWinCanvas("tie");
             Debug.Log("tie");
         }
     }

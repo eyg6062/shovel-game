@@ -9,6 +9,7 @@ TagManager:
   - Map
   - GameManager
   - UnitController
+  - UnitInfoBox
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Tutorial Button
   - 
   - 
   - 
@@ -48,6 +49,9 @@ TagManager:
     locked: 0
   - name: Object
     uniqueID: 136642279
+    locked: 0
+  - name: Shovel
+    uniqueID: 3369599529
     locked: 0
   - name: Highlight
     uniqueID: 2679298509

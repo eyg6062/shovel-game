@@ -100,4 +100,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasPf: {fileID: 8138355199374528051, guid: 748296e17822a9c4f9b366a5a5b00b9a, type: 3}
-  errorTextPf: {fileID: 0}
+  winCanvasPf: {fileID: 1715270035459825570, guid: 4e9167ce2e080b644908af44cc6a34f3, type: 3}
+  tutorialCanvasPf: {fileID: 428036833572385374, guid: 2a0b523224126ee4cb098ec596fc019f, type: 3}

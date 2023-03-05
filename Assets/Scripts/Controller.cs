@@ -15,6 +15,7 @@ public class Controller : MonoBehaviour
     private GameObject interactTiles;
 
     public event EventHandler<OnEndTurnArgs> OnEndTurn;
+
     public class OnEndTurnArgs : EventArgs { public Faction faction; }
 
     public void ClickedUnit(Unit unit)
@@ -97,5 +98,7 @@ public class Controller : MonoBehaviour
         activeFaction = Faction.BLUE;
 
         OnEndTurn?.Invoke(this, new OnEndTurnArgs { faction = Faction.RED });
+
+        
     }
 }

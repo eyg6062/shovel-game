@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BlockTile : TileObject
 {
+    private GameObject crack;
+
     private void Start()
     {
         Initialize();
@@ -12,6 +14,18 @@ public class BlockTile : TileObject
     override public void Initialize()
     {
         base.Initialize();
+        crack = transform.Find("CrackedSquare").gameObject;
+        crack.SetActive(false);
     }
+
+    public void CheckHP()
+    {
+        if (GetHP() <= 1)
+        {
+            crack.SetActive(true);
+        }
+    }
+
+
 
 }
