@@ -9,6 +9,7 @@ public class GridManager : MonoBehaviour
 {
     private GameObject map;
     private List<List<TileObject>> objectArray;
+    private List<Unit> unitList;
 
     private UIManager uiManager;
 
@@ -23,6 +24,7 @@ public class GridManager : MonoBehaviour
         map = GameObject.FindWithTag("Map");
 
         objectArray = new List<List<TileObject>>();
+        unitList = new List<Unit>();
 
         // fill object list with null values (100 x 100 for now), maybe fix later
         for(int i = 0; i < 100; i++)
@@ -44,6 +46,12 @@ public class GridManager : MonoBehaviour
                 int x = (int)pos.x;
                 int y = (int)pos.y;
                 objectArray[x][y] = child.GetComponent<TileObject>();
+
+                // adds units to unit list
+                if (child.tag == "Unit")
+                {
+                    unitList.Add(child.GetComponent<Unit>());
+                }
             }
         }
 
@@ -106,6 +114,7 @@ public class GridManager : MonoBehaviour
         // returns if carrying and needs to climb
         if (unit.IsCarrying() && cost > 1) 
         {
+            uiManager.DisplayError("Can't climb while carrying");
             return;
         }
 
@@ -309,7 +318,58 @@ public class GridManager : MonoBehaviour
     {
         Vector2 pos = obj.GetPos();
         SetCoord(pos, null);
+        
+        // scuffed, goes through list and makes dead unit null
+        for (int i = 0; i < unitList.Count; i++)
+        {
+            if (unitList[i] == obj)
+            {
+                unitList[i] = null;
+            }
+        }
+
         Destroy(obj.gameObject);
+
+        CheckWin();
+
+    }
+
+    private void CheckWin()
+    {
+        int blueCount = 0;
+        int redCount = 0;
+        foreach (Unit unit in unitList) {
+            if (unit == null)
+            {
+                Debug.Log("dead unit is null");
+                continue;
+            }
+            if (unit.GetFaction() == Faction.BLUE)
+            {
+                blueCount++;
+            } 
+            else if (unit.GetFaction() == Faction.RED)
+            {
+                redCount++;
+            }
+        }
+
+        Debug.Log("red:" + redCount + " blue:" + blueCount);
+        if (blueCount > 0 && redCount == 0)
+        {
+            // blue wins
+            Debug.Log("blue wins");
+        } 
+        else if (redCount > 0 && blueCount == 0)
+        {
+            // red wins
+            Debug.Log("red wins");
+        } 
+        else if (blueCount == 0 && redCount == 0)
+        {
+            // tie
+            Debug.Log("tie");
+        }
     }
 
     // return true if unit has enough points to do action, spends the points

@@ -8,7 +8,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject canvasPf;
     private GameObject canvasObject;
 
-    [SerializeField] private GameObject errorTextPf;
     private GameObject errorTextObj;
 
     private UnitInfoBox unitInfoBox;
