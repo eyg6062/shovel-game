@@ -53,7 +53,7 @@ public class GridManager : MonoBehaviour
         int y = (int)dest.y;
         if (x < 0 || y < 0)
         {
-            return true;
+            return false;
         }
 
         if (objectArray[x][y] != null)
@@ -200,6 +200,8 @@ public class GridManager : MonoBehaviour
                 }
                 else
                 {
+                    FallDamage(obj, height);
+                    FallDamage(downObj, height);
                     hitFloor = true;
                     continue;
                 }
@@ -209,6 +211,26 @@ public class GridManager : MonoBehaviour
             dest = down;
         }
         MoveObj(obj, dest);
+    }
+
+    private void FallDamage(TileObject unit, int height)
+    {
+        if ( unit.GetType() != typeof(Unit))
+        {
+            return;
+        }
+
+        int offset = 2;
+
+        int amt = (height - offset);
+        if (amt <= 0)
+        {
+            return;
+        }
+
+        unit.AdjustHP(amt);
+
+        CheckDead(unit);
     }
 
     private void ColumnFall(int x)
@@ -229,14 +251,23 @@ public class GridManager : MonoBehaviour
     {
         int cost = 1;
 
+        SetCarriedUnits(unit);
+        if (unit.IsCarrying())
+        {
+            Debug.Log("iscarrying");
+            return;
+        }
+
         TileObject obj = GetObj(dest);
         if (obj == null)
         {
+            Debug.Log("no object");
             return;
         }
 
         if (!obj.IsAttackable())
         {
+            Debug.Log("not attackable");
             return;
         }
 
@@ -245,15 +276,16 @@ public class GridManager : MonoBehaviour
             obj.AdjustHP(cost);
         }
 
-        Debug.Log("attacked at " + dest + ". Remaining HP is " + obj.GetHP());
+        CheckDead(obj);
+    }
 
+    private void CheckDead(TileObject obj)
+    {
         // check if dead
         if (obj.IsDead())
         {
             DestroyObjAndFall(obj);
         }
-
-        
     }
 
     private void DestroyObjAndFall(TileObject obj)

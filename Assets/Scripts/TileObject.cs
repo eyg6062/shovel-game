@@ -50,6 +50,8 @@ public class TileObject : MonoBehaviour
         {
             HP = 0;
         }
+
+        Debug.Log(GetPos() + " has " + HP + " HP left");
     }
 
     public bool IsAttackable()

@@ -38,7 +38,14 @@ public class UnitController : MonoBehaviour
 
     public void ClickedAtkTile(Vector2 pos)
     {
-        gridManager.AttackObj(unit, pos);
+        Vector2 unitPos = unit.GetPos();
+        if (pos == unitPos + Vector2.up ||
+            pos == unitPos + Vector2.down ||
+            pos == unitPos + Vector2.left ||
+            pos == unitPos + Vector2.right)
+        {
+            gridManager.AttackObj(unit, pos);
+        }
     }
 
     public Unit GetUnit()

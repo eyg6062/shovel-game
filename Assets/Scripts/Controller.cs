@@ -37,6 +37,12 @@ public class Controller : MonoBehaviour
             interactTiles.transform.parent = activeUnit.gameObject.transform;
             unitController.transform.parent = activeUnit.gameObject.transform;
         }
+        // redirect to unit controller
+        else
+        {
+            UnitController controllerScript = unitController.GetComponent<UnitController>();
+            controllerScript.ClickedAtkTile(unit.GetPos());
+        }
         
     }
 

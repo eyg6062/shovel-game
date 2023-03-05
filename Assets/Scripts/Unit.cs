@@ -34,6 +34,8 @@ public class Unit : TileObject
         {
             actPoints = 0;
         }
+
+        Debug.Log(GetPos() + " has " + actPoints + " action points left");
     }
 
     public void SetCarriedUnit(Unit carriedUnit)
