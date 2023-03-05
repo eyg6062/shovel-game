@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 307235689789877721}
   - component: {fileID: 307235689789877722}
   - component: {fileID: 307235689789877723}
+  - component: {fileID: 5520923532755871263}
+  - component: {fileID: 7774822933351147797}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -29,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.0273411, y: 2.4372785, z: -6.6763473}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,3 +75,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitControllerPf: {fileID: 2150327841446922587, guid: bd137c8ed54633548b43107444d7855b, type: 3}
   interactTilesPf: {fileID: 4360349656119592751, guid: b9f6ed70b78626f4fb7e4b413a907f66, type: 3}
+--- !u!114 &5520923532755871263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307235689789877724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d0f7e065f139ed4787034c19728c5ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7774822933351147797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307235689789877724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f3bb18aaf33de48b254d0183c4f541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasPf: {fileID: 8138355199374528051, guid: 748296e17822a9c4f9b366a5a5b00b9a, type: 3}

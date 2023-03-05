@@ -7,6 +7,8 @@ public class UnitInteract : Tile
     private Unit unit;
 
     private Controller controller;
+    private UnitInfoBox unitInfoBox;
+    private UIManager uiManager;
 
     private void Start()
     {
@@ -19,6 +21,8 @@ public class UnitInteract : Tile
         GameObject gameManager = GameObject.FindWithTag("GameManager");
         controller = gameManager.GetComponent<Controller>();
 
+        uiManager = gameManager.GetComponent<UIManager>();
+
         unit = gameObject.GetComponent<Unit>();
 
     }
@@ -26,5 +30,15 @@ public class UnitInteract : Tile
     private void OnMouseDown()
     {
         controller.ClickedUnit(unit);
+    }
+
+    private void OnMouseEnter()
+    {
+        uiManager.DisplayUnitInfo(unit);
+    }
+
+    private void OnMouseExit()
+    {
+        uiManager.HideUnitInfo();
     }
 }

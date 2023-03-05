@@ -307,7 +307,7 @@ public class GridManager : MonoBehaviour
     // return true if unit has enough points to do action, spends the points
     private bool TryUnitAct(Unit unit, int cost)
     {
-        if (unit.GetActPts() - cost < 0)
+        if (unit.GetAP() - cost < 0)
         {
             //
             Debug.Log("not enough points");

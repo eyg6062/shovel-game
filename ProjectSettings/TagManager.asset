@@ -7,6 +7,8 @@ TagManager:
   - TileObject
   - Unit
   - Map
+  - GameManager
+  - UnitController
   layers:
   - Default
   - TransparentFX
@@ -43,4 +45,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Object
+    uniqueID: 136642279
+    locked: 0
+  - name: Highlight
+    uniqueID: 2679298509
     locked: 0

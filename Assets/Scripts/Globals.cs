@@ -21,4 +21,12 @@ public class Globals
         }
         return tiles;
     }
+
+   
 }
+public enum Faction
+{
+    BLUE,
+    RED
+}
+

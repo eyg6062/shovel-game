@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
     private Unit activeUnit;
+    private Faction activeFaction;
 
     [SerializeField] protected GameObject unitControllerPf;
     private GameObject unitController;
@@ -12,10 +14,21 @@ public class Controller : MonoBehaviour
     [SerializeField] private GameObject interactTilesPf;
     private GameObject interactTiles;
 
+    public event EventHandler<OnEndTurnArgs> OnEndTurn;
+    public class OnEndTurnArgs : EventArgs { public Faction faction; }
+
     public void ClickedUnit(Unit unit)
     {
+        if (unit.GetFaction() != activeFaction && activeUnit != null)
+        {
+            ThrowToUnitController(unit);
+        }
+        else if (unit.GetFaction() != activeFaction )
+        {
+            return;
+        }
         // deactivate unit if clicked on same unit
-        if (ReferenceEquals(activeUnit, unit))
+        else if (ReferenceEquals(activeUnit, unit))
         {
             activeUnit = null;
 
@@ -40,10 +53,49 @@ public class Controller : MonoBehaviour
         // redirect to unit controller
         else
         {
-            UnitController controllerScript = unitController.GetComponent<UnitController>();
-            controllerScript.ClickedAtkTile(unit.GetPos());
+            ThrowToUnitController(unit);
         }
         
     }
 
+    // temporary, to avoid overlapping click
+    private void ThrowToUnitController(Unit unit)
+    {
+        UnitController controllerScript = unitController.GetComponent<UnitController>();
+        controllerScript.ClickedAtkTile(unit.GetPos());
+    }
+
+    public void BlueEndTurn()
+    {
+        if (activeUnit != null)
+        {
+            return;
+        }
+
+        if (activeFaction == Faction.RED)
+        {
+            return;
+        }
+
+        activeFaction = Faction.RED;
+
+        OnEndTurn?.Invoke(this, new OnEndTurnArgs {faction = Faction.BLUE});
+    }
+
+    public void RedEndTurn()
+    {
+        if (activeUnit != null)
+        {
+            return;
+        }
+
+        if (activeFaction == Faction.BLUE)
+        {
+            return;
+        }
+
+        activeFaction = Faction.BLUE;
+
+        OnEndTurn?.Invoke(this, new OnEndTurnArgs { faction = Faction.RED });
+    }
 }

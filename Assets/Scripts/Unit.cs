@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Unit : TileObject
 {
-    [SerializeField]protected int totalActPoints;
+    [SerializeField] protected int totalActPoints;
+    [SerializeField] protected Faction faction;
 
     private int actPoints;
     private Unit carriedUnit;
@@ -22,7 +23,7 @@ public class Unit : TileObject
         carriedUnit = null;
     }
 
-    public int GetActPts()
+    public int GetAP()
     {
         return actPoints;
     }
@@ -51,6 +52,16 @@ public class Unit : TileObject
     public bool IsCarrying()
     {
         return !(carriedUnit == null);
+    }
+
+    public Faction GetFaction()
+    {
+        return faction;
+    }
+
+    public void RefreshActPts()
+    {
+        actPoints = totalActPoints;
     }
 
 }
