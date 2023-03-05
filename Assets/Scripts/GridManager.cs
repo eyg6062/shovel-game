@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.UI.CanvasScaler;
 
 public class GridManager : MonoBehaviour
 {

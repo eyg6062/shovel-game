@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 4279338211834547772}
   - component: {fileID: 3359441655817599484}
   - component: {fileID: 3166369137557229080}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: questionmark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,8 +195,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 64}
+  m_AnchoredPosition: {x: 0.000020981, y: 0}
+  m_SizeDelta: {x: 119.2383, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3359441655817599484
 CanvasRenderer:
@@ -364,7 +364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5363190952798638734, guid: 8d926f9829ed53544a9c42add4e37059, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7377755422540871340, guid: 8d926f9829ed53544a9c42add4e37059, type: 3}
       propertyPath: m_Pivot.x
