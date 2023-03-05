@@ -63,96 +63,24 @@ public class GridManager : MonoBehaviour
         return false;
     }
 
-    public void UnitClimb(Unit unit, Vector2 dir)
+    public void UnitWalk(Unit unit, Vector2 dir)
     {
         int cost = 1;
-        int height = 0;
-
-        // sets carried units if they exist
-        SetCarriedUnits(unit);
 
         Vector2 pos = unit.GetPos();
         Vector2 dest = pos + dir;
 
-        bool climbing = true;
-
-        while (climbing)
-        {
-            if (isOccupied(dest))
-            {
-                height++;
-                dest = dest + Vector2.up;
-            } else
-            {
-                climbing = false;
-            }
-        }
-
-        Vector2 above = unit.GetPos() + Vector2.up;
-        for (int i = 0; i < height; i++)
-        {
-            if (isOccupied(above))
-            {
-                return;
-            } 
-            above = above + Vector2.up;
-        }
-
-        // returns if carrying and needs to climb
-        if (unit.IsCarrying() && cost > 1) 
+        if (isOccupied(dest))
         {
             return;
         }
 
-        if (TryUnitAct(unit, cost + height))
+        if (TryUnitAct(unit, cost))
         {
             MoveObj(unit, dest);
             ObjectFall(unit);
-
-            // moves carried units
-            MountedMove(unit.GetCarriedUnit(), dir);
         }
-
     }
-
-    private void SetCarriedUnits(Unit unit)
-    {
-        Vector2 dest = unit.GetPos() + Vector2.up;
-        if (isOccupied(dest))
-        {
-            TileObject obj = GetObj(dest);
-            if (obj.GetType() == typeof(Unit))
-            {
-                Unit upUnit = (Unit)obj;
-                unit.SetCarriedUnit(upUnit);
-
-                SetCarriedUnits(upUnit);
-                return;
-            }
-        }
-        unit.SetCarriedUnit(null);
-    }
-    
-    private void MountedMove(Unit unit, Vector2 dir)
-    {
-        if (unit == null)
-        {
-            return;
-        }
-
-        Vector2 pos = unit.GetPos();
-        Vector2 dest = pos + dir;
-
-        if (!isOccupied(dest))
-        {
-            MoveObj(unit, dest);
-        }
-
-        ObjectFall(unit);
-
-        MountedMove(unit.GetCarriedUnit(), dir);
-    }
-
 
     public void MoveObj(TileObject obj, Vector2 dest)
     {
@@ -194,7 +122,7 @@ public class GridManager : MonoBehaviour
             if (isOccupied(down))
             {
                 TileObject downObj = GetObj(down);
-                if (obj.GetType() == typeof(BlockTile) && downObj.GetType() == typeof(Unit))
+                if (downObj.GetType() == typeof(Unit))
                 {
                     DestroyObj(downObj);
                 }

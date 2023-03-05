@@ -7,7 +7,6 @@ public class Unit : TileObject
     [SerializeField]protected int totalActPoints;
 
     private int actPoints;
-    private Unit carriedUnit;
 
     private void Start()
     {
@@ -19,7 +18,6 @@ public class Unit : TileObject
         base.Initialize();
         actPoints = totalActPoints;
         falls = true;
-        carriedUnit = null;
     }
 
     public int GetActPts()
@@ -34,21 +32,6 @@ public class Unit : TileObject
         {
             actPoints = 0;
         }
-    }
-
-    public void SetCarriedUnit(Unit carriedUnit)
-    {
-        this.carriedUnit = carriedUnit;
-    }
-
-    public Unit GetCarriedUnit()
-    {
-        return carriedUnit;
-    }
-
-    public bool IsCarrying()
-    {
-        return !(carriedUnit == null);
     }
 
 }
